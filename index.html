@@ -1,15 +1,1644 @@
-monet-restaurant/
-│
-├── index.html
-│
-└── assets/
-    ├── duck-confit.jpg
-    ├── tagliatelle.jpg
-    ├── monet-set.jpg
-    ├── trout-steak.jpg
-    ├── kataifi-shrimp.jpg
-    ├── duck-potatoes.jpg
-    ├── papkaterev.jpg
-    ├── quail.jpg
-    ├── linguine.jpg
-    └── eggplant.jpg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monet Restaurant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --red: #c91620;
+      --dark-red: #941018;
+      --cream: #f7f1e7;
+      --white: #fffaf4;
+      --dark: #1b1716;
+      --grey: #746c67;
+      --border: rgba(27, 23, 22, 0.12);
+      --shadow: 0 25px 70px rgba(70, 18, 20, 0.17);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--dark);
+      font-family: "Montserrat", sans-serif;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    section {
+      padding: 95px 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247, 241, 231, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(15px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    .logo-circle {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--red);
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 12px 30px rgba(201, 22, 32, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-button,
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .nav-button,
+    .button-red {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 12px 28px rgba(201, 22, 32, 0.25);
+    }
+
+    .nav-button:hover,
+    .button-red:hover {
+      background: var(--dark-red);
+      transform: translateY(-2px);
+    }
+
+    .button-light {
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .button-light:hover {
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      padding: 60px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero h1 {
+      max-width: 750px;
+      font-size: clamp(60px, 8vw, 112px);
+      line-height: 0.92;
+      letter-spacing: -4px;
+    }
+
+    .hero-text {
+      max-width: 630px;
+      margin: 28px 0 34px;
+      color: var(--grey);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-images {
+      position: relative;
+      min-height: 650px;
+    }
+
+    .hero-image {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 36px;
+      background: var(--red);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: contrast(1.04) saturate(1.05);
+      transition: 0.5s;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-image-large {
+      width: 76%;
+      height: 610px;
+      top: 0;
+      right: 0;
+    }
+
+    .hero-image-small {
+      width: 48%;
+      height: 300px;
+      left: 0;
+      bottom: 0;
+      border: 10px solid var(--cream);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .about-image {
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      border-radius: 30px;
+      background: var(--red);
+      box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: contrast(1.03) saturate(1.04);
+    }
+
+    .about h2 {
+      margin-bottom: 25px;
+      font-size: clamp(50px, 6vw, 82px);
+      line-height: 0.95;
+    }
+
+    .about p {
+      margin: 0 0 18px;
+      color: var(--grey);
+      line-height: 1.8;
+    }
+
+    .statistics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      padding: 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--red);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 35px;
+    }
+
+    .stat span {
+      color: var(--grey);
+      font-size: 12px;
+    }
+
+    /* SECTION TITLE */
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(48px, 6vw, 78px);
+      line-height: 0.95;
+    }
+
+    .section-title p {
+      max-width: 530px;
+      margin: 0;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    /* SIGNATURE CARDS */
+
+    .dish-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .dish-card {
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 16px 50px rgba(50, 25, 20, 0.08);
+      transition: 0.3s;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 25px 65px rgba(50, 25, 20, 0.15);
+    }
+
+    .dish-photo {
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: var(--red);
+    }
+
+    .dish-photo img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: contrast(1.04) saturate(1.05);
+      transition: 0.5s;
+    }
+
+    .dish-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .dish-info {
+      padding: 22px;
+    }
+
+    .dish-info h3 {
+      margin-bottom: 10px;
+      font-size: 31px;
+      line-height: 1;
+    }
+
+    .dish-info p {
+      min-height: 43px;
+      margin: 0;
+      color: var(--grey);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .dish-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 18px;
+      font-weight: 700;
+    }
+
+    .tag {
+      padding: 8px 11px;
+      background: #f4e2d4;
+      border-radius: 50px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .price {
+      color: var(--red);
+    }
+
+    /* MENU */
+
+    .menu-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--red);
+      color: white;
+    }
+
+    .menu-section .eyebrow {
+      color: #fff1cb;
+    }
+
+    .menu-section .section-title p {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .menu-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .menu-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .menu-tab {
+      padding: 12px 16px;
+      color: white;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .menu-tab.active {
+      color: var(--red);
+      background: white;
+    }
+
+    .menu-search {
+      min-width: 250px;
+      padding: 12px 16px;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50px;
+      outline: none;
+    }
+
+    .menu-search::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .menu-count {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 13px;
+    }
+
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px 18px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .menu-item h3 {
+      margin-bottom: 8px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .menu-item p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.73);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .menu-price {
+      flex-shrink: 0;
+      color: #fff1c9;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* GALLERY */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-auto-rows: 280px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      margin: 0;
+      border-radius: 25px;
+      background: var(--red);
+      box-shadow: 0 16px 45px rgba(50, 25, 20, 0.12);
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: contrast(1.04) saturate(1.05);
+      transition: 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* RESERVATION */
+
+    .reservation-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .reservation-text {
+      padding: 55px;
+      background: var(--red);
+      color: white;
+    }
+
+    .reservation-text .eyebrow {
+      color: #fff1cb;
+    }
+
+    .reservation-text h2 {
+      margin-bottom: 24px;
+      font-size: clamp(50px, 6vw, 78px);
+      line-height: 0.95;
+    }
+
+    .reservation-text p {
+      color: rgba(255, 255, 255, 0.77);
+      line-height: 1.75;
+    }
+
+    .contacts {
+      display: grid;
+      gap: 15px;
+      margin-top: 30px;
+      font-weight: 600;
+    }
+
+    .reservation-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 48px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--grey);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(201, 22, 32, 0.08);
+    }
+
+    footer {
+      padding: 34px 0;
+      color: var(--grey);
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .reservation-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-images {
+        min-height: 620px;
+      }
+
+      .dish-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item:first-child {
+        grid-row: span 1;
+      }
+    }
+
+    @media (max-width: 650px) {
+      section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        padding-top: 35px;
+      }
+
+      .hero-grid {
+        gap: 35px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-images {
+        min-height: 500px;
+      }
+
+      .hero-image-large {
+        width: 82%;
+        height: 455px;
+      }
+
+      .hero-image-small {
+        width: 57%;
+        height: 235px;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 18px;
+      }
+
+      .dish-grid,
+      .statistics,
+      .menu-list,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-search {
+        width: 100%;
+      }
+
+      .reservation-text,
+      .reservation-form {
+        padding: 30px 22px;
+      }
+
+      .reservation-form {
+        grid-template-columns: 1fr;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+
+      <a href="#home" class="logo">
+        <span class="logo-circle">M</span>
+        Monet
+      </a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#signature">Signature</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+      </nav>
+
+      <a href="#reservation" class="nav-button">
+        Reserve a table
+      </a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">Restaurant · Dilijan</div>
+
+          <h1>
+            Armenian soul, European expression.
+          </h1>
+
+          <p class="hero-text">
+            Monet combines local ingredients, elegant presentation and modern
+            European cuisine in an atmosphere inspired by Dilijan.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#menu" class="button button-red">
+              Explore the menu
+            </a>
+
+            <a href="#reservation" class="button button-light">
+              Book a table
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-images">
+
+          <div class="hero-image hero-image-large">
+            <img
+              src="assets/duck-confit.jpg"
+              alt="Duck confit at Monet Restaurant"
+            >
+          </div>
+
+          <div class="hero-image hero-image-small">
+            <img
+              src="assets/tagliatelle.jpg"
+              alt="Tagliatelle with truffle"
+            >
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+
+        <div class="about-image">
+          <img
+            src="assets/monet-set.jpg"
+            alt="Monet breakfast set"
+          >
+        </div>
+
+        <div>
+          <div class="eyebrow">Our story</div>
+
+          <h2>
+            A menu shaped by place.
+          </h2>
+
+          <p>
+            At Monet, Armenian flavours meet modern European presentation.
+            Dilijan mushrooms, papkaterev, trout, matsun and local cheeses
+            are presented through refined sauces and memorable combinations.
+          </p>
+
+          <p>
+            The menu is designed for breakfast, relaxed lunches, special
+            dinners and memorable weekends in Dilijan.
+          </p>
+
+          <div class="statistics">
+
+            <div class="stat">
+              <strong>9</strong>
+              <span>Menu categories</span>
+            </div>
+
+            <div class="stat">
+              <strong>60+</strong>
+              <span>Food selections</span>
+            </div>
+
+            <div class="stat">
+              <strong>1</strong>
+              <span>Dilijan identity</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SIGNATURE -->
+
+    <section id="signature">
+      <div class="container">
+
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">Chef’s selection</div>
+            <h2>Signature dishes</h2>
+          </div>
+
+          <p>
+            A selection of Monet favourites created with Armenian ingredients,
+            European techniques and elegant presentation.
+          </p>
+        </div>
+
+        <div class="dish-grid">
+
+          <article class="dish-card">
+            <div class="dish-photo">
+              <img
+                src="assets/trout-steak.jpg"
+                alt="Trout steak with almond sauce"
+              >
+            </div>
+
+            <div class="dish-info">
+              <h3>Trout steak</h3>
+
+              <p>
+                Trout, red caviar, almond flakes, cream and almond milk.
+              </p>
+
+              <div class="dish-bottom">
+                <span class="tag">Chef’s choice</span>
+                <span class="price">6,700 AMD</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card">
+            <div class="dish-photo">
+              <img
+                src="assets/kataifi-shrimp.jpg"
+                alt="Kataifi shrimp"
+              >
+            </div>
+
+            <div class="dish-info">
+              <h3>Kataifi shrimp</h3>
+
+              <p>
+                Shrimp, kataifi pastry, garlic, sriracha and sweet chilli.
+              </p>
+
+              <div class="dish-bottom">
+                <span class="tag">Popular</span>
+                <span class="price">4,400 AMD</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card">
+            <div class="dish-photo">
+              <img
+                src="assets/tagliatelle.jpg"
+                alt="Tagliatelle with truffle"
+              >
+            </div>
+
+            <div class="dish-info">
+              <h3>Truffle tagliatelle</h3>
+
+              <p>
+                Tagliatelle, truffle mousse, black truffle, parmesan and cream.
+              </p>
+
+              <div class="dish-bottom">
+                <span class="tag">Signature</span>
+                <span class="price">4,600 AMD</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL MENU -->
+
+    <section class="menu-section" id="menu">
+      <div class="container">
+
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">Full food menu</div>
+            <h2>Discover Monet</h2>
+          </div>
+
+          <p>
+            Select a category or search by dish name, ingredient or price.
+            All prices are shown in Armenian dram.
+          </p>
+        </div>
+
+        <div class="menu-controls">
+
+          <div class="menu-tabs">
+            <button class="menu-tab active" data-category="breakfast">
+              Breakfast
+            </button>
+
+            <button class="menu-tab" data-category="appetizers">
+              Appetizers
+            </button>
+
+            <button class="menu-tab" data-category="salads">
+              Salads
+            </button>
+
+            <button class="menu-tab" data-category="soups">
+              Soups
+            </button>
+
+            <button class="menu-tab" data-category="pasta">
+              Pasta
+            </button>
+
+            <button class="menu-tab" data-category="specials">
+              Chef’s Specials
+            </button>
+
+            <button class="menu-tab" data-category="mains">
+              Main dishes
+            </button>
+
+            <button class="menu-tab" data-category="grill">
+              Grill
+            </button>
+
+            <button class="menu-tab" data-category="desserts">
+              Desserts
+            </button>
+          </div>
+
+          <input
+            id="menuSearch"
+            class="menu-search"
+            type="search"
+            placeholder="Search menu..."
+          >
+
+        </div>
+
+        <div id="menuCount" class="menu-count"></div>
+
+        <div id="menuList" class="menu-list"></div>
+
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+
+    <section id="gallery">
+      <div class="container">
+
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">Visual menu</div>
+            <h2>Plated at Monet</h2>
+          </div>
+
+          <p>
+            Your food photographs are shown with consistent cropping,
+            rounded corners and premium visual styling.
+          </p>
+        </div>
+
+        <div class="gallery">
+
+          <figure class="gallery-item">
+            <img
+              src="assets/duck-potatoes.jpg"
+              alt="Duck with baked potatoes"
+            >
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="assets/papkaterev.jpg"
+              alt="Papkaterev"
+            >
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="assets/quail.jpg"
+              alt="Quail with caramelized onion"
+            >
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="assets/linguine.jpg"
+              alt="Linguine with seafood"
+            >
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="assets/eggplant.jpg"
+              alt="Baked eggplant"
+            >
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVATION -->
+
+    <section id="reservation">
+      <div class="container reservation-box">
+
+        <div class="reservation-text">
+          <div class="eyebrow">Reservations</div>
+
+          <h2>Your table is waiting.</h2>
+
+          <p>
+            Replace the address, phone number and email below with
+            Monet Restaurant’s real contact information.
+          </p>
+
+          <div class="contacts">
+            <span>📍 Dilijan, Armenia</span>
+            <span>☎ +374 XX XX XX XX</span>
+            <span>✉ reservations@monet.am</span>
+          </div>
+        </div>
+
+        <form id="bookingForm" class="reservation-form">
+
+          <div class="field">
+            <label for="name">Name</label>
+
+            <input
+              id="name"
+              type="text"
+              placeholder="Your name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+
+            <input
+              id="phone"
+              type="tel"
+              placeholder="+374"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="date">Date</label>
+
+            <input
+              id="date"
+              type="date"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="guests">Guests</label>
+
+            <select id="guests">
+              <option>1 guest</option>
+              <option>2 guests</option>
+              <option>3 guests</option>
+              <option>4 guests</option>
+              <option>5+ guests</option>
+            </select>
+          </div>
+
+          <div class="field field-full">
+            <label for="message">Message</label>
+
+            <textarea
+              id="message"
+              rows="4"
+              placeholder="Special request"
+            ></textarea>
+          </div>
+
+          <div class="field field-full">
+            <button class="button button-red" type="submit">
+              Request reservation
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© 2026 Monet Restaurant</span>
+      <span>Modern European cuisine with Armenian character</span>
+    </div>
+  </footer>
+
+  <script>
+    const menu = {
+      breakfast: [
+        {
+          name: "Omelet with avocado",
+          description: "3 eggs, cheddar, mozzarella and avocado",
+          price: "2,900 AMD"
+        },
+        {
+          name: "Monet Set",
+          description: "2 croissants, lightly salted trout, red caviar, egg, butter, maasdam and camembert",
+          price: "3,800 AMD"
+        },
+        {
+          name: "Dilijan Set",
+          description: "Omelet with Dilijan mushrooms, papkaterev, rezhan, matsun, cottage cheese, flatbread, lavash, fresh vegetables, greens and Armenian herbal tea",
+          price: "5,600 AMD"
+        },
+        {
+          name: "Syrniki with cherry confiture",
+          description: "Syrniki, cherry confiture and sour cream",
+          price: "3,400 AMD"
+        },
+        {
+          name: "Granola Bowl",
+          description: "Granola, homemade yogurt, chia seeds, coconut, nuts, banana, blueberries and strawberries",
+          price: "3,200 AMD"
+        }
+      ],
+
+      appetizers: [
+        {
+          name: "Cheese and berries",
+          description: "Blue cheese, parmesan, camembert, maasdam, strawberry, raspberry and blueberry",
+          price: "2,400 AMD"
+        },
+        {
+          name: "Armenian cheese assortment",
+          description: "Lori, chanakh and suluguni",
+          price: "3,400 AMD"
+        },
+        {
+          name: "Meat assortment",
+          description: "Chorizo, prosciutto and mortadella",
+          price: "4,200 AMD"
+        },
+        {
+          name: "Vitello with beef tongue",
+          description: "Beef tongue, capers, mushrooms, carrot, hard cheese and cream",
+          price: "3,400 AMD"
+        },
+        {
+          name: "Veal tartare bruschettas",
+          description: "Veal fillet, garlic, soy sauce, egg and lemongrass",
+          price: "3,900 AMD"
+        },
+        {
+          name: "Tomato bruschettas",
+          description: "Tomatoes, parmesan, basil and garlic",
+          price: "2,400 AMD"
+        },
+        {
+          name: "Trout bruschettas",
+          description: "Lightly salted trout, lemon, orange, capers, cilantro and tartar sauce",
+          price: "3,400 AMD"
+        },
+        {
+          name: "Trout carpaccio",
+          description: "Lightly salted trout, orange, lemon, lime, parmesan, garlic and cilantro",
+          price: "4,600 AMD"
+        },
+        {
+          name: "Kataifi shrimp",
+          description: "Shrimp, kataifi pastry, garlic, sriracha, sweet chilli and mixed greens",
+          price: "4,400 AMD"
+        },
+        {
+          name: "Dip sauces",
+          description: "Roasted vegetable sauce, tarragon and almond sauce, creamy spicy sauce and croutons",
+          price: "3,300 AMD"
+        },
+        {
+          name: "Baked eggplant",
+          description: "Eggplant, marinated pepper, cream cheese, blue cheese and oyster mushrooms",
+          price: "3,700 AMD"
+        }
+      ],
+
+      salads: [
+        {
+          name: "Trout and avocado mousse salad",
+          description: "Trout, avocado, cucumber, carrot, cream cheese, couscous and kimchi",
+          price: "3,800 AMD"
+        },
+        {
+          name: "Veal and quinoa salad",
+          description: "Medium veal steak, parmesan, red cabbage, bell pepper, quinoa and greens",
+          price: "4,400 AMD"
+        },
+        {
+          name: "Turkey and tzatziki salad",
+          description: "Turkey, strained matsun, tzatziki, cucumber and walnuts",
+          price: "4,600 AMD"
+        },
+        {
+          name: "Caramelized chicken salad",
+          description: "Chicken steak, spinach, mixed greens, cherry tomato, mushrooms, cabbage and onion",
+          price: "3,900 AMD"
+        },
+        {
+          name: "Burrata and Dilijan pine cone salad",
+          description: "Burrata, pine cones, pomegranate sauce, dried fruits and pistachios",
+          price: "4,800 AMD"
+        },
+        {
+          name: "Greens and Armenian cheese salad",
+          description: "Mixed greens, Armenian cheese and almonds",
+          price: "2,800 AMD"
+        },
+        {
+          name: "Greek salad",
+          description: "Tomatoes, cucumbers, bell peppers, feta, olives, lettuce, lemon and oregano",
+          price: "2,800 AMD"
+        }
+      ],
+
+      soups: [
+        {
+          name: "Onion soup",
+          description: "Onion, white wine and maasdam",
+          price: "2,800 AMD"
+        },
+        {
+          name: "Mushroom cream soup",
+          description: "Mushrooms, carrot, potato, onion, edamame, milk and cream",
+          price: "1,900 AMD"
+        },
+        {
+          name: "Tomato cream soup",
+          description: "Tomato, cherry tomato, garlic, basil, ricotta and cream",
+          price: "1,800 AMD"
+        },
+        {
+          name: "Choratan soup",
+          description: "Choratan, chickpeas, arishta, red beans, mint, garlic and onion",
+          price: "2,600 AMD"
+        },
+        {
+          name: "Veal soup",
+          description: "Veal, beans, potatoes, onions and walnuts",
+          price: "3,200 AMD"
+        },
+        {
+          name: "Seafood soup",
+          description: "Shrimp, mussels, squid, octopus, trout, saffron, orange, tomato, onion and fennel",
+          price: "5,600 AMD"
+        }
+      ],
+
+      pasta: [
+        {
+          name: "Tagliatelle with truffle and parmesan",
+          description: "Tagliatelle, truffle mousse, black truffle, parmesan, cream, soy sauce and garlic",
+          price: "4,600 AMD"
+        },
+        {
+          name: "Linguine with seafood",
+          description: "Linguine, shrimp, mussels, octopus, cream, parmesan, tomato, garlic, saffron and tom yum paste",
+          price: "4,200 AMD"
+        },
+        {
+          name: "Arishta with veal",
+          description: "Arishta, veal cheeks, carrot, broccoli, radish, onion and ginger",
+          price: "3,600 AMD"
+        },
+        {
+          name: "Arishta with papkaterev and smoked cheese",
+          description: "Arishta, papkaterev, smoked suluguni, cream and parmesan",
+          price: "3,200 AMD"
+        }
+      ],
+
+      specials: [
+        {
+          name: "Tolma with barberries",
+          description: "Beef, pork, rice, herbs, onion, garlic, barberries and matsun",
+          price: "4,400 AMD"
+        },
+        {
+          name: "Ajar risotto with turkey",
+          description: "Turkey, mushrooms, ajar grain, cream, mustard, parmesan and garlic",
+          price: "6,300 AMD"
+        },
+        {
+          name: "Tomahawk steak",
+          description: "Veal chop, corn, bell pepper, wine sauce and mixed greens — 1,000 g",
+          price: "26,000 AMD"
+        }
+      ],
+
+      mains: [
+        {
+          name: "Duck confit",
+          description: "Duck leg, pomegranate sauce, red wine and carrot",
+          price: "4,800 AMD"
+        },
+        {
+          name: "Duck breast with baked potatoes",
+          description: "Duck breast, potatoes, ginger, garlic, pomegranate sauce, soy sauce and mixed greens",
+          price: "7,800 AMD"
+        },
+        {
+          name: "Quail with caramelized onion",
+          description: "Quail, onion, garlic, orange, lemon, egg, white wine and soy sauce",
+          price: "5,200 AMD"
+        },
+        {
+          name: "Ribeye steak",
+          description: "Price per 100 g",
+          price: "5,700 AMD"
+        },
+        {
+          name: "Baked pork ribs",
+          description: "Pork ribs, potato, marinated bell pepper, cilantro, parsley and soy sauce",
+          price: "5,200 AMD"
+        },
+        {
+          name: "Trout steak with almond sauce",
+          description: "Trout, red caviar, almond flakes, cream and almond milk",
+          price: "6,700 AMD"
+        },
+        {
+          name: "Ratatouille",
+          description: "Eggplant, zucchini, tomatoes and bell pepper",
+          price: "3,200 AMD"
+        },
+        {
+          name: "Papkaterev",
+          description: "Armenian greens, matsun and onion",
+          price: "2,400 AMD"
+        },
+        {
+          name: "Dilijan mushrooms",
+          description: "Sautéed with egg or rezhan cheese",
+          price: "2,700 AMD"
+        }
+      ],
+
+      grill: [
+        {
+          name: "Pork chalagach, ribs and pulp",
+          description: "500 g",
+          price: "5,400 AMD"
+        },
+        {
+          name: "Pork ribs",
+          description: "700 g",
+          price: "6,400 AMD"
+        },
+        {
+          name: "Pork loin",
+          description: "700 g",
+          price: "11,700 AMD"
+        },
+        {
+          name: "Veal",
+          description: "400 g",
+          price: "7,200 AMD"
+        },
+        {
+          name: "Lamb",
+          description: "500 g",
+          price: "6,400 AMD"
+        },
+        {
+          name: "Half chicken",
+          description: "700 g",
+          price: "3,700 AMD"
+        },
+        {
+          name: "Chicken steak",
+          description: "250 g",
+          price: "4,100 AMD"
+        },
+        {
+          name: "Trout",
+          description: "500 g",
+          price: "7,400 AMD"
+        },
+        {
+          name: "Sturgeon",
+          description: "2,000 g",
+          price: "24,000 AMD"
+        },
+        {
+          name: "Plech potatoes",
+          description: "500 g",
+          price: "2,200 AMD"
+        },
+        {
+          name: "Jmur potatoes",
+          description: "500 g",
+          price: "3,000 AMD"
+        },
+        {
+          name: "Grilled vegetables",
+          description: "300 g",
+          price: "2,800 AMD"
+        }
+      ],
+
+      desserts: [
+        {
+          name: "Brownie with vanilla mousse",
+          description: "Brownie, vanilla mousse and white chocolate",
+          price: "2,600 AMD"
+        },
+        {
+          name: "Blueberry Napoleon",
+          description: "Napoleon pastry with blueberry flavour",
+          price: "2,200 AMD"
+        },
+        {
+          name: "Lemon tart",
+          description: "Lemon cream tart",
+          price: "2,400 AMD"
+        },
+        {
+          name: "Gata with pistachio cream",
+          description: "Armenian gata served with pistachio cream",
+          price: "3,200 AMD"
+        },
+        {
+          name: "Cherry cheesecake",
+          description: "Cheesecake with cherry topping",
+          price: "2,500 AMD"
+        },
+        {
+          name: "Ice cream",
+          description: "Selection of ice cream",
+          price: "1,400 AMD"
+        },
+        {
+          name: "Fruit assortment",
+          description: "Seasonal fruit selection",
+          price: "3,600 AMD"
+        }
+      ]
+    };
+
+    const menuList = document.getElementById("menuList");
+    const menuCount = document.getElementById("menuCount");
+    const menuSearch = document.getElementById("menuSearch");
+    const menuTabs = document.querySelectorAll(".menu-tab");
+
+    let currentCategory = "breakfast";
+
+    function displayMenu() {
+      const searchValue = menuSearch.value.trim().toLowerCase();
+
+      const filteredItems = menu[currentCategory].filter(function(item) {
+        const fullText =
+          item.name + " " +
+          item.description + " " +
+          item.price;
+
+        return fullText.toLowerCase().includes(searchValue);
+      });
+
+      menuCount.textContent =
+        filteredItems.length +
+        (filteredItems.length === 1 ? " item" : " items") +
+        " in this category";
+
+      if (filteredItems.length === 0) {
+        menuList.innerHTML = `
+          <article class="menu-item">
+            <div>
+              <h3>No dishes found</h3>
+              <p>Try another search word or choose another category.</p>
+            </div>
+          </article>
+        `;
+
+        return;
+      }
+
+      menuList.innerHTML = filteredItems.map(function(item) {
+        return `
+          <article class="menu-item">
+            <div>
+              <h3>${item.name}</h3>
+              <p>${item.description}</p>
+            </div>
+
+            <span class="menu-price">
+              ${item.price}
+            </span>
+          </article>
+        `;
+      }).join("");
+    }
+
+    menuTabs.forEach(function(tab) {
+      tab.addEventListener("click", function() {
+        menuTabs.forEach(function(button) {
+          button.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+
+        currentCategory = tab.dataset.category;
+        menuSearch.value = "";
+
+        displayMenu();
+      });
+    });
+
+    menuSearch.addEventListener("input", displayMenu);
+
+    displayMenu();
+
+    document
+      .getElementById("bookingForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const date = document.getElementById("date").value;
+        const guests = document.getElementById("guests").value;
+        const message = document.getElementById("message").value;
+
+        const subject = encodeURIComponent(
+          "Monet Restaurant reservation request"
+        );
+
+        const emailBody = encodeURIComponent(
+          "Name: " + name +
+          "\nPhone: " + phone +
+          "\nDate: " + date +
+          "\nGuests: " + guests +
+          "\nMessage: " + message
+        );
+
+        window.location.href =
+          "mailto:reservations@monet.am?subject=" +
+          subject +
+          "&body=" +
+          emailBody;
+      });
+  </script>
+
+</body>
+</html>
